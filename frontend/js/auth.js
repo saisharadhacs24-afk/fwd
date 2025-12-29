@@ -94,3 +94,4 @@ async function signup() {
         messageDiv.classList.add('error');
     }
 }
+
