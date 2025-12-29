@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Home | Club Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== Global Typography ===== */
+        * {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html {
+            font-size: 18px;
+        }
+
+        body {
+            display: block !important;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #020617, #0f172a);
+            padding-top: 64px;
+            margin: 0;
+            overflow-x: hidden;
+            color: #e5e7eb;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 600;
+            letter-spacing: -0.4px;
+            color: #e0f2fe;
+        }
+
+        p {
+            font-weight: 400;
+            line-height: 1.65;
+            letter-spacing: 0.15px;
+            color: #c7d2fe;
+        }
+
+        /* ===== Navbar ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 64px;
+            background: rgba(2, 6, 23, 0.98);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem;
+            z-index: 9999;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+            box-sizing: border-box;
+        }
+
+        .navbar h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            color: #60a5fa;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+            white-space: nowrap;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #e5e7eb;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: #60a5fa;
+        }
+
+        /* ===== Dashboard ===== */
+        .dashboard {
+            width: 100%;
+            max-width: 900px;
+            margin: 4rem auto 6rem auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.6rem;
+        }
+
+        .card {
+            position: relative;
+            background: radial-gradient(circle at top left,
+                    #020617,
+                    #020617 40%,
+                    #0f172a);
+            padding: 2.6rem 2.4rem;
+            border-radius: 20px;
+            min-height: 240px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.5);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-header i {
+            font-size: 2.1rem;
+        }
+
+        .card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+        }
+
+        /* Accent colors */
+        .card.clubs i {
+            color: #38bdf8;
+        }
+
+        .card.gallery i {
+            color: #a78bfa;
+        }
+
+        .card.events i {
+            color: #34d399;
+        }
+
+        .card.qna i {
+            color: #fbbf24;
+        }
+
+        /* Gradient border illusion */
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            padding: 1px;
+            background: linear-gradient(135deg, #2563eb, transparent);
+            -webkit-mask:
+                linear-gradient(#000 0 0) content-box,
+                linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <h3>Club Portal</h3>
+
+        <div class="nav-links">
+            <a href="#">About</a>
+            <a href="#">Clubs</a>
+            <a href="#">Help</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+
+    <!-- DASHBOARD -->
+    <div class="dashboard">
+        <div class="card clubs" onclick="goTo('clubs.html')">
+            <div class="card-header">
+                <i class="fa-solid fa-users"></i>
+                <h4>Discover Clubs</h4>
+            </div>
+            <p>
+                Explore all student clubs, their missions, committees,
+                activities, and how to become a member.
+            </p>
+        </div>
+
+        <div class="card gallery" onclick="goTo('gallery.html')">
+            <div class="card-header">
+                <i class="fa-solid fa-image"></i>
+                <h4>Gallery</h4>
+            </div>
+            <p>
+                Relive moments from recent college events, fests,
+                workshops, and club activities.
+            </p>
+        </div>
+
+        <div class="card events" onclick="goTo('events.html')">
+            <div class="card-header">
+                <i class="fa-solid fa-calendar-days"></i>
+                <h4>Events</h4>
+            </div>
+            <p>
+                Stay updated with upcoming events, registrations,
+                deadlines, and important dates.
+            </p>
+        </div>
+
+        <div class="card qna" onclick="goTo('qna.html')">
+            <div class="card-header">
+                <i class="fa-solid fa-circle-question"></i>
+                <h4>Q&amp;A</h4>
+            </div>
+            <p>
+                Find answers to common questions or reach out to
+                the development team for help.
+            </p>
+        </div>
+
+
+    </div>
+
+    <script>
+        // Redirect helper
+        function goTo(page) {
+            window.location.href = page;
+        }
+
+        // Logout
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+
+        // Protect route
+        if (!localStorage.getItem('token')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+
+</body>
+
+</html>
